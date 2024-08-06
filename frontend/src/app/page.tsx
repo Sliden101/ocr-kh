@@ -28,7 +28,7 @@ export default function Home() {
 
   const [base64, setBase64] = useState<string | null>(null);
 
-  const [text, setText] = useState<string | null>(null);
+  const [ocrResult, setOcrResult] = useState<string | null>(null);
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
@@ -53,24 +53,21 @@ export default function Home() {
 
     setBase64(base64 as string);
 
-    try {
       // Send a POST request
-      let result = await axios({
-        method: 'post',
-        url: "http://localhost:6969/ocr-kh",
-        data: {
-          base64Image: base64,
-        }
-      });
-      console.log(result.data);
-    } 
-    catch( e:any ) {
-      console.log(e);
-    }
+    let result = await axios({
+      method: 'post',
+      url: "http://localhost:6969/ocr-kh",
+      data: {
+        base64Image: base64,
+      }
+    });
+    console.log(result.data.text);
+    setOcrResult(result.data.text); // Set the OCR result text
+    
 
     setFile(null);
-    setBase64(null);
   };
+  
 
 
   return (
@@ -87,12 +84,14 @@ export default function Home() {
         <button type="submit">Upload</button>
       </form>
       {base64 && (
-        <Image src={base64} width={300} height={400} alt="Uploaded Image" />
+        <Image src={base64} width={600} height={600} alt="Uploaded Image" />
       )}    
-      {text && (
-        <Textarea placeholder={text} />
-      )}    
-
+      {ocrResult && (
+        <div>
+          <h2>OCR Result</h2>
+          <Textarea value={ocrResult} readOnly style={{ height: '800px' }} />
+        </div>
+      )}
 
     </div>
   )

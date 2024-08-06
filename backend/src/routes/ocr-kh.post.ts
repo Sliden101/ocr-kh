@@ -8,15 +8,15 @@ import { string } from "joi";
 const scheduler = createScheduler();
 
 // Creates worker and adds to scheduler
-const workerGen = async () => {
-    const worker = await createWorker('khm', 1, {
-        logger: m => console.log(m),
-        cachePath: "."
-      });
-    scheduler.addWorker(worker);
-}
-
 export const handler: APIhandler = async (req, res, throwerr) => {
+    const workerGen = async () => {
+        const worker = await createWorker('khm', 1, {
+            logger: m => console.log(m),
+            cachePath: "."
+          });
+        scheduler.addWorker(worker);
+    }
+    
     const image = req.body.base64Image;
     async function ocr(image: string, workerN: any){
         const resArr = Array(workerN);
@@ -27,7 +27,6 @@ export const handler: APIhandler = async (req, res, throwerr) => {
 
         const { data: { text } } = await scheduler.addJob('recognize', image);
 
-        await scheduler.terminate(); // It also terminates all workers.
         return text
     }
     try {
