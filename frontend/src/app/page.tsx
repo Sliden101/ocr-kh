@@ -59,7 +59,10 @@ export default function Home() {
       url: "http://15.235.185.225:6969/ocr-kh",
       data: {
         base64Image: base64,
-      }
+      },
+      headers: {
+        scheme: 'http',
+      },
     });
     console.log(result.data.text);
     setOcrResult(result.data.text); // Set the OCR result text
