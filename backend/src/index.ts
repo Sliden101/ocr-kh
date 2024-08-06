@@ -6,14 +6,14 @@ import app from "~/app";
 dotenv.config();
 
 logger.info("API", "Initiating listening to the port...");
-app.listen(process.env.PORT, () => {
+app.listen(6969, () => {
     logger.success(
         "API",
         `API nest created and started listening to the specified port in the config`
     );
     logger.info(
         "API",
-        `You can access the api on http://localhost:${process.env.PORT}`
+        `You can access the api on http://localhost:6969`
     );
     console.log("");
 });
