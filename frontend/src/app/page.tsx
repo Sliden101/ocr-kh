@@ -56,7 +56,7 @@ export default function Home() {
       // Send a POST request
     let result = await axios({
       method: 'post',
-      url: process.env.API_ENDPOINT,
+      url: "http://15.235.185.225:6969/ocr-kh",
       data: {
         base64Image: base64,
       }
