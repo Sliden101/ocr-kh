@@ -1,0 +1,44 @@
+{
+  "name": "ocr-kh",
+  "version": "1.0.0",
+  "description": "Backend for khmer ocr",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsup",
+    "start": "node .",
+    "dev": "pnpm run build && pnpm run start"
+  },
+  "keywords": [
+    "express",
+    "typescript",
+    "nodejs",
+    "production",
+    "deployment",
+    "backend"
+  ],
+  "license": "MIT",
+  "tsup": {
+    "entry": [
+      "src"
+    ],
+    "clean": true,
+    "silent": true,
+    "minify": true
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.24",
+    "prisma": "^5.10.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "helmet": "^7.1.0",
+    "joi": "^17.12.2",
+    "pg": "^8.11.3",
+    "tesseract.js": "^5.1.0"
+  }
+}
