@@ -1,9 +1,10 @@
 "use client"
 import Image from "next/image";
-import type { NextPage } from "next";
 import { useState } from "react";
 import 'dotenv/config'
 import axios from "axios";
+import { Textarea } from "@/components/ui/textarea";
+
 
 const toBase64 = (file: File) => {
   return new Promise((resolve, reject) => {
@@ -26,6 +27,8 @@ export default function Home() {
   const [file, setFile] = useState<File | null>(null);
 
   const [base64, setBase64] = useState<string | null>(null);
+
+  const [text, setText] = useState<string | null>(null);
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) {
@@ -54,20 +57,17 @@ export default function Home() {
       // Send a POST request
       let result = await axios({
         method: 'post',
-        url: 'http://localhost:6969/ocr-kh',
+        url: process.env.API_ENDPOINT,
         data: {
           base64Image: base64,
         }
       });
-
-      console.log(result);
-
+      setText(result.data.text as string);
     } 
     catch( e:any ) {
       console.log(e);
     }
 
-    // Clear the states after upload
     setFile(null);
     setBase64(null);
   };
@@ -89,6 +89,11 @@ export default function Home() {
       {base64 && (
         <Image src={base64} width={300} height={400} alt="Uploaded Image" />
       )}    
+      {text && (
+        <Textarea placeholder={text} />
+      )}    
+
+
     </div>
   )
 }
