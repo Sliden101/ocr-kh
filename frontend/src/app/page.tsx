@@ -56,7 +56,7 @@ export default function Home() {
       // Send a POST request
     let result = await axios({
       method: 'post',
-      url: "http://15.235.185.225:6969/ocr-kh",
+      url: "https://ocr.sdgclub.site/ocr-kh",
       data: {
         base64Image: base64,
       },
