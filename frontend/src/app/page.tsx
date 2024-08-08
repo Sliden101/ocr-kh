@@ -61,7 +61,7 @@ export default function Home() {
         base64Image: base64,
       },
       headers: {
-        scheme: 'http',
+        scheme: 'https',
       },
     });
     console.log(result.data.text);
