@@ -13,12 +13,5 @@ app.use(helmet());
 app.use("/", registerRoutes());
 app.use(errorHandler);
 
-const allowedOrigins = ['https://ocr-kh.vercel.app'];
-
-const options: cors.CorsOptions = {
-    origin: allowedOrigins
-};
-
-app.use(cors(options));
 
 export default app;
