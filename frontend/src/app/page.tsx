@@ -53,17 +53,11 @@ export default function Home() {
 
     setBase64(base64 as string);
 
-      // Send a POST request
-    let result = await axios({
-      method: 'post',
-      url: "https://ocr.sdgclub.site/ocr-kh",
-      data: {
-        base64Image: base64,
-      },
-      headers: {
-        scheme: 'https',
-      },
+    // Send a POST request
+    const result = await axios.post("https://ocr.sdgclub.site/ocr-kh", {
+      base64Image: base64,
     });
+    
     console.log(result.data.text);
     setOcrResult(result.data.text); // Set the OCR result text
     
