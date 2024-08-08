@@ -1,7 +1,7 @@
 import logger from "~/utils/logger";
 import app from "~/app";
 
-let port = 80;
+let port = 6969;
 
 
 logger.info("API", "Initiating listening to the port...");
