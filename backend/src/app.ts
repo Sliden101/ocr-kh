@@ -13,7 +13,7 @@ app.use(helmet());
 app.use("/", registerRoutes());
 app.use(errorHandler);
 
-const allowedOrigins = ['http://localhost:6969','https://ocr.sdgclub.site'];
+const allowedOrigins = ['https://ocr-kh.vercel.app'];
 
 const options: cors.CorsOptions = {
     origin: allowedOrigins
